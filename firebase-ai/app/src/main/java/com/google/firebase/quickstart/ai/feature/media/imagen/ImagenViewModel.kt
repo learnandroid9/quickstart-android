@@ -38,7 +38,7 @@ import com.google.firebase.ai.type.ImagenStyleReference
 import com.google.firebase.ai.type.ImagenSubjectReference
 import com.google.firebase.ai.type.ImagenSubjectReferenceType
 import com.google.firebase.ai.type.toImagenInlineImage
-import com.google.firebase.quickstart.ai.MainActivity
+import com.google.firebase.quickstart.ai.MainApplication
 import kotlin.collections.component1
 import kotlin.collections.component2
 
@@ -155,8 +155,8 @@ class ImagenViewModel(
     ): ImagenGenerationResponse<ImagenInlineImage> {
         return model.editImage(
             listOf(
-                ImagenRawImage(MainActivity.catImage.toImagenInlineImage()),
-                ImagenStyleReference(attachedImage.first()!!.toImagenInlineImage(), 1, "an art style")
+                ImagenRawImage(MainApplication.catImage.toImagenInlineImage()),
+                ImagenStyleReference(attachedImage.value!!.toImagenInlineImage(), 1, "an art style")
             ),
             "Generate an image in an art style [1] based on the following caption: $inputText",
         )
@@ -170,7 +170,7 @@ class ImagenViewModel(
             listOf(
                 ImagenSubjectReference(
                     referenceId = 1,
-                    image = attachedImage.first()!!.toImagenInlineImage(),
+                    image = attachedImage.value!!.toImagenInlineImage(),
                     subjectType = ImagenSubjectReferenceType.ANIMAL,
                     description = "An animal"
                 )
@@ -184,8 +184,8 @@ class ImagenViewModel(
         model: ImagenModel,
         inputText: String,
     ): ImagenGenerationResponse<ImagenInlineImage> {
-        val bitmap = attachedImage.first()!!
-        val position = when (selectedOption.first()) {
+        val bitmap = attachedImage.value!!
+        val position = when (selectedOption.value) {
             "Top" -> ImagenImagePlacement.TOP_CENTER
             "Bottom" -> ImagenImagePlacement.BOTTOM_CENTER
             "Left" -> ImagenImagePlacement.LEFT_CENTER
@@ -209,8 +209,8 @@ class ImagenViewModel(
         model: ImagenModel,
         inputText: String,
     ): ImagenGenerationResponse<ImagenInlineImage> {
-        val bitmap = attachedImage.first()!!
-        val mask = when (selectedOption.first()) {
+        val bitmap = attachedImage.value!!
+        val mask = when (selectedOption.value) {
             "Foreground" -> ImagenForegroundMask()
             else -> ImagenBackgroundMask()
         }

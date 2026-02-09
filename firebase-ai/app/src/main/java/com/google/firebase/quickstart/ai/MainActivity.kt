@@ -50,7 +50,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        catImage = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.cat)
         setContent {
             val navController = rememberNavController()
 
@@ -147,8 +146,5 @@ class MainActivity : ComponentActivity() {
                 }
             })
         }
-    }
-    companion object{
-        lateinit var catImage: Bitmap
     }
 }

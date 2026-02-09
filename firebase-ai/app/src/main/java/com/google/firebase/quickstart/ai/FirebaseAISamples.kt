@@ -187,7 +187,7 @@ val FIREBASE_AI_SAMPLES = listOf(
         initialPrompt = content { text("A picture of a cat") },
         includeAttach = true,
         allowEmptyPrompt = true,
-        additionalImage = MainActivity.catImage,
+        additionalImage = MainApplication.catImage,
         imageLabels = listOf("Style Target", "Style Source"),
         editingMode = EditingMode.STYLE_TRANSFER
     ),
